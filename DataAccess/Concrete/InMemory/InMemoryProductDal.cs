@@ -37,8 +37,8 @@ namespace DataAccess.Concrete.InMemory
             //        productToDelete = p;
             //    }
             //}
-            //LING - Language Integrated Query
-            productToDelete = _products.SingleOrDefault(p=>p.ProductId == product.ProductId);
+            //LINQ - Language Integrated Query
+            productToDelete = _products.SingleOrDefault(p=>p.ProductId == product.ProductId); // lambda expression p=>
            
 
             _products.Remove(productToDelete);
@@ -49,9 +49,21 @@ namespace DataAccess.Concrete.InMemory
             return _products;
         }
 
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId).ToList();
+
+            //Where içindeki şartlara uyan bütün elemanları yeni bir liste haline getirir ve onu döndürür.
+        }
+
         public void Update(Product product)
         {
-            
+            Product productToUpdate = null;
+            productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            productToUpdate.ProductName = product.ProductName;
+            productToUpdate.CategoryId = product.CategoryId;
+            productToUpdate.UnitPrice = product.UnitPrice;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
         }
     }
 }
