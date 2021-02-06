@@ -1,18 +1,19 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal
+    public interface IProductDal : IEntityRepository<Product>
     {
-        List<Product> GetAll();
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-
-        List<Product> GetAllByCategory(int categoryId); // bu ürünleri kategoriye göre filtrele
-
+        List<ProductDetailDto> GetProductDetails();
     }
 }
+
+//Code Refactoring

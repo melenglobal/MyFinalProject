@@ -1,19 +1,37 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
 
 namespace ConsoleUI
 {
     class Program
-    {
+         // DTOs - Data Transformation Object
+    {    //SOLİD O- Open Closed Principle
         static void Main(string[] args)
         {
+           //CategoryTest();
+             ProductTest();
+        }
 
-            ProductManager productManager = new ProductManager(new InMemoryProductDal()); // Beni yenileyebilmen için, hangi veri yöntemi ile çalıştığını bana söyle zahmet olmaz ise.
+        private static void CategoryTest()
+        {
+            
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-            foreach (var product in productManager.GetAll())
+            foreach (var category in categoryManager.GetAll())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(category.CategoryName);
+            }
+        }
+
+        private static void ProductTest()
+        {
+            ProductManager productManager = new ProductManager(new EfProductDal()); // Beni yenileyebilmen için, hangi veri yöntemi ile çalıştığını bana söyle zahmet olmaz ise.
+
+            foreach (var product in productManager.GetProductDetails())
+            {
+                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
             }
         }
     }
