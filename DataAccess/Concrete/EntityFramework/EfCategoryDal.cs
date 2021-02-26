@@ -10,7 +10,9 @@ namespace DataAccess.Concrete.EntityFramework
 {   
     //NuGet
     public class EfCategoryDal : EfEntityRepositoryBase<Category, NorthwindContext>, ICategoryDal
-    {
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
