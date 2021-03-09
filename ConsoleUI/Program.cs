@@ -14,20 +14,21 @@ namespace ConsoleUI
              ProductTest();
         }
 
-        private static void CategoryTest()
-        {
+        //private static void CategoryTest()
+        //{
             
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        //    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-            foreach (var category in categoryManager.GetAll())
-            {
-                Console.WriteLine(category.CategoryName);
-            }
-        }
+        //    foreach (var category in categoryManager.GetAll())
+        //    {
+        //        Console.WriteLine(category.CategoryName);
+        //    }
+        //}
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal()); // Beni yenileyebilmen için, hangi veri yöntemi ile çalıştığını bana söyle zahmet olmaz ise.
+            ProductManager productManager = new ProductManager(new EfProductDal(),
+                new CategoryManager(new EfCategoryDal())); // Beni yenileyebilmen için, hangi veri yöntemi ile çalıştığını bana söyle zahmet olmaz ise.
 
             var result = productManager.GetProductDetails();
             if (result.Success == true)

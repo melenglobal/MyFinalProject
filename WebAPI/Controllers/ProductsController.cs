@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult Get()
         {   
             //Swanger
@@ -36,7 +36,33 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
+         
+        [HttpGet("Getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _productService.GetById(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result);
+
+        }
+        [HttpPost("Add")]
+        public IActionResult Add(Product product)
+        {
+            var result = _productService.Add(product);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }
