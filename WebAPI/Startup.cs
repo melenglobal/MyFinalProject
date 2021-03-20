@@ -54,7 +54,7 @@ namespace WebAPI
                     };
                 });
             services.AddDependencyResolvers(new ICoreModule[] {
-            new CoreModule()} //Oluþturacaðýmýz modülleri buraya ekleyebiliriz.
+            new CoreModule()} //Oluþturacaðýmýz modülleri buraya ekleyebiliriz. 
             );
         }
 
