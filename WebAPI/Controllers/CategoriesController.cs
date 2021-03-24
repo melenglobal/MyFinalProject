@@ -19,10 +19,11 @@ namespace WebAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
-           
+            //Swanger
+            //Dependency Chain
             var result = _categoryService.GetAll();
             if (result.Success)
             {
@@ -31,6 +32,5 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
-
     }
 }
